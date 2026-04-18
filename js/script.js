@@ -4,11 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   hoverTargets.forEach((item) => {
-    item.style.transition = "transform 0.3s ease, box-shadow 0.3s ease";
-
     item.addEventListener("mouseenter", () => {
       item.style.transform = "translateY(-8px) scale(1.02)";
       item.style.boxShadow = "0 14px 30px rgba(0, 0, 0, 0.16)";
+      item.style.transition = "transform 0.3s ease, box-shadow 0.3s ease";
     });
 
     item.addEventListener("mouseleave", () => {
