@@ -741,6 +741,23 @@ ul {
   .footer-layout {
     text-align: left;
   }
+
+   .footer-brand-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.footer-logo {
+  width: 42px;
+  height: auto;
+  display: block;
+}
+
+.footer-brand h3 {
+  margin: 0;
+}
 }
 
 @media (max-width: 480px) {
