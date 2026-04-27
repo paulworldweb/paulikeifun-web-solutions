@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // =========================
+  // HOVER EFFECTS
+  // =========================
   const hoverTargets = document.querySelectorAll(
     ".hero-image img, .btn, .intro-card, .service-card, .project-card, .section-box, .contact-box, .contact-details, .nav-links a, .logo"
   );
@@ -16,30 +19,47 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // =========================
+  // HAMBURGER MENU
+  // =========================
   const menuToggle = document.querySelector(".menu-toggle");
   const navLinks = document.querySelector(".nav-links");
 
+  // Only run if both hamburger button and menu exist
   if (menuToggle && navLinks) {
-    menuToggle.addEventListener("click", () => {
-      const isOpen = navLinks.classList.contains("active");
+    // When hamburger is clicked
+    menuToggle.addEventListener("click", (e) => {
+      // Stop click from bubbling to the document
+      e.stopPropagation();
 
-      if (isOpen) {
-        navLinks.classList.remove("active");
-        menuToggle.classList.remove("active");
-        menuToggle.setAttribute("aria-expanded", "false");
-      } else {
-        navLinks.classList.add("active");
-        menuToggle.classList.add("active");
-        menuToggle.setAttribute("aria-expanded", "true");
-      }
+      // Toggle menu open/close
+      menuToggle.classList.toggle("active");
+      navLinks.classList.toggle("active");
+
+      // Update accessibility state
+      const expanded = menuToggle.classList.contains("active");
+      menuToggle.setAttribute("aria-expanded", expanded ? "true" : "false");
     });
 
+    // Prevent clicks inside the menu from closing it immediately
+    navLinks.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+
+    // Close menu when any nav link is clicked
     navLinks.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
         navLinks.classList.remove("active");
         menuToggle.classList.remove("active");
         menuToggle.setAttribute("aria-expanded", "false");
       });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", () => {
+      navLinks.classList.remove("active");
+      menuToggle.classList.remove("active");
+      menuToggle.setAttribute("aria-expanded", "false");
     });
   }
 });
